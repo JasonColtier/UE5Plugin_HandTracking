@@ -1,5 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
+using System.IO;
 using UnrealBuildTool;
 
 public class SimpleOpenXRHandTracking : ModuleRules
@@ -49,5 +50,17 @@ public class SimpleOpenXRHandTracking : ModuleRules
 				// ... add any modules that your module loads dynamically here ...
 			}
 			);
+		if (Target.Platform == UnrealTargetPlatform.Android)
+		{
+			// AndroidPlugin
+			{
+				// string ManifestFile = Utils.MakePathRelativeTo(ModuleDirectory, "IrwinoAndroidPermission_UPL.xml");
+				// AdditionalPropertiesForReceipt.Add("AndroidPlugin", ManifestFile);
+
+				string manifest_file = Path.Combine(ModuleDirectory, "IrwinoAndroidPermission_UPL.xml");
+
+				AdditionalPropertiesForReceipt.Add("AndroidPlugin", manifest_file);
+			}
+		}	
 	}
 }
